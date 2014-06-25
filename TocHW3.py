@@ -14,11 +14,7 @@ import re
 if len(sys.argv) != 5:
     print 'Too few argument'
     sys.exit(0)
-'''
-if type(int(sys.argv[4])) != int: 
-    print 'Year should be integer.'
-    sys.exit(0)
-'''
+
 try:
     int(sys.argv[4])
 except ValueError as e:
@@ -47,14 +43,12 @@ for line in jsonSource.readlines():
 		if region == sys.argv[2]:
 			location = result.group('location')
 			road = location.find(sys.argv[3])
-			#print road
 			if road != -1:
 				date = result.group('date')
 				if date[0:3]>=sys.argv[4]:
 					price = result.group('price')
 					totalPrice = totalPrice + int(result.group('price'))
 					match = match + 1;
-					#print region + "   " + location + "   " + date + "   " + price					
 
 if match != 0:
     avg_price = totalPrice / match
